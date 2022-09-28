@@ -1,6 +1,11 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        EratosthenesPrimeSieve test = new EratosthenesPrimeSieve(1000);
-        test.printPrimes();
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
+        System.out.println("Wie hoch soll die Grenze sein?: ");
+        //EratosthenesPrimeSieve test = new EratosthenesPrimeSieve(scanner.nextInt());
+        //test.printPrimes();
     }
 }
