@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
         System.out.println("Wie hoch soll die Grenze sein?: ");
-        //EratosthenesPrimeSieve test = new EratosthenesPrimeSieve(scanner.nextInt());
-        //test.printPrimes();
+        EratosthenesPrimeSieve test = new EratosthenesPrimeSieve(scanner.nextInt());
+        test.printPrimes();
     }
 }

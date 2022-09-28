@@ -23,11 +23,12 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
                 gestrichen[j] = true;
             }
         }
+        return false;
     }
 
     @Override
     public void printPrimes() {
-        for (int i = 0; i <= grenze; i++) {
+        for (int i = 2; i <= grenze; i++) {
             if (isPrime(i) == true) {
                 System.out.println(isPrime(i));
             }
