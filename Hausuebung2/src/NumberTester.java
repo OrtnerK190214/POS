@@ -5,24 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class NumberTester {
+public class NumberTester{
 
     private String fileName;
+    public NumberTest numberTester;
 
     public NumberTester(String fileName) {
         this.fileName = fileName;
     }
 
-    public void setOddEvenTester(NumberTester oddTester) {
-        this.oddTester = oddTester;
+    public void setOddEvenTester(NumberTest oddTester) {
+        this.numberTester = oddTester;
     }
 
     public void setPrimeTester(NumberTest primeTester) {
-        this.primeTester = primeTester;
+        this.numberTester = primeTester;
     }
 
-    public void setPalindromeTester(NumberTester palindromeTester) {
-        this.PalindromeTester() = palindromeTester;
+    public void setPalindromeTester(NumberTest palindromeTester) {
+        this.numberTester = palindromeTester;
     }
 
     public void testFile() {
@@ -43,7 +44,34 @@ public class NumberTester {
             throw new RuntimeException(e);
         }
 
-        
 
+        int anweisung = 0;
+        int zahl = 0;
+        for (int i = 1; i<dateizahlen.size(); i++) {
+            if (i % 2 == 0)
+            {
+                anweisung = i;
+            }
+            else {
+                zahl = i;
+            }
+            if(anweisung == 1)
+            {
+                OddEven oddeven = new OddEven();
+                setOddEvenTester(oddeven);
+            }
+            else if(anweisung == 2)
+            {
+                Prime prime = new Prime();
+                setPrimeTester(prime);
+            }
+            else if(anweisung == 3)
+            {
+                Palindrome palindrome = new Palindrome();
+                setPalindromeTester(palindrome);
+            }
+
+            numberTester.testNumber(zahl);
+        }
     }
 }
