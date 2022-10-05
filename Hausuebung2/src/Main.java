@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 public class Main {
 
     public static void main(String[] args) {
+        //Beispiel 2
         List<String> list = new ArrayList<>();
         list.add("Test1");
         list.add("Test2");
@@ -21,7 +22,12 @@ public class Main {
 
         list.forEach(System.out::print);
 
-        NumberTester numberTester = new NumberTester("Test.txt");
+        //Beispiel 3
+        NumberTester numberTester = new NumberTester("C:\\Users\\kai17\\Desktop\\Hausuebung2 Test.txt");
         numberTester.testFile();
+
+        //Beispiel 4
+
+
     }
 }
