@@ -54,7 +54,20 @@ public class NumberTester{
         };
 
         NumberTest prime = (zahl) -> {
-            return false;
+            boolean tmp = false;
+            for (int i = 2; i <= zahl / 2; ++i) {
+                if (zahl % i == 0) {
+                    tmp = true;
+                    break;
+                }
+            }
+
+            if (!tmp) {
+                return true;
+            }
+            else {
+                return false;
+            }
         };
 
         NumberTest palindrome = (zahl) -> {
