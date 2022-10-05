@@ -1,3 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class NumberTester {
 
     private String fileName;
@@ -19,6 +26,24 @@ public class NumberTester {
     }
 
     public void testFile() {
+        File file = new File(fileName);
+        List dateizahlen = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine())
+            {
+                String s = scanner.nextLine();
+                String[] splitted = s.split(" ");
+                for (int i = 0; i< splitted.length; i++)
+                {
+                    dateizahlen.add(i);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         
+
     }
 }
