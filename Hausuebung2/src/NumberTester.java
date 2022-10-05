@@ -44,6 +44,23 @@ public class NumberTester{
             throw new RuntimeException(e);
         }
 
+        NumberTest oddeven = (zahl) -> {
+            if (zahl % 2 == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+        NumberTest prime = (zahl) -> {
+            return false;
+        };
+
+        NumberTest palindrome = (zahl) -> {
+            return false;
+        };
+
 
         int anweisung = 0;
         int zahl = 0;
@@ -57,21 +74,18 @@ public class NumberTester{
             }
             if(anweisung == 1)
             {
-                OddEven oddeven = new OddEven();
                 setOddEvenTester(oddeven);
             }
             else if(anweisung == 2)
             {
-                Prime prime = new Prime();
                 setPrimeTester(prime);
             }
             else if(anweisung == 3)
             {
-                Palindrome palindrome = new Palindrome();
                 setPalindromeTester(palindrome);
             }
 
-            numberTester.testNumber(zahl);
+            System.out.println(numberTester.testNumber(zahl));
         }
     }
 }

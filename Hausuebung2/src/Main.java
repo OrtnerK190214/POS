@@ -20,5 +20,8 @@ public class Main {
         list.forEach(consumer);
 
         list.forEach(System.out::print);
+
+        NumberTester numberTester = new NumberTester("Test.txt");
+        numberTester.testFile();
     }
 }
