@@ -71,7 +71,23 @@ public class NumberTester{
         };
 
         NumberTest palindrome = (zahl) -> {
-            return false;
+            int reversedNum = 0;
+            int remainder;
+
+            int originalNum = zahl;
+
+            while (zahl != 0) {
+                remainder = zahl % 10;
+                reversedNum = reversedNum * 10 + remainder;
+                zahl /= 10;
+            }
+
+            if (originalNum == reversedNum) {
+                return true;
+            }
+            else {
+                return false;
+            }
         };
 
 
