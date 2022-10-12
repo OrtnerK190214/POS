@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Main {
@@ -41,6 +43,7 @@ public class Main {
     };
 
     public static void main(String[] args) {
+        //Beispiel 1
         String fileName = "weapons.csv";
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             stream.forEach(a ->  addWeapon(a));
@@ -54,6 +57,22 @@ public class Main {
         System.out.println("--------------------------------");
         sortalphabetisch(weaponslist);
         printable.print(weaponslist);
+
+        //Beispiel 3
+        final Predicate<Integer> isEven = a -> (a % 2 == 0);
+        final Predicate<Integer> isPositive = a -> (a > 0);
+        final Predicate<Integer> isZero = a -> (a == 0);
+        final Predicate<Integer> notEven = a -> (a % 2 != 0);
+
+        int test = 2347;
+        boolean ergebnis = isEven.and(isPositive).test(test);
+        boolean ergebnis2 = notEven.and(isPositive).test(test);
+
+        final Predicate<String> isShortWord = a -> (a.length() != 4);
+        String test2 = "Test";
+        boolean ergebnis3 = isShortWord.test(test2);
+
+        System.out.println(ergebnis + ", " + ergebnis2 + ", " + ergebnis3);
     }
 
     public static List<Weapon> sortdamage(List<Weapon> weapons) {
