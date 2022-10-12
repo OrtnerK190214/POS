@@ -1,8 +1,15 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Main {
 
-    private List<Weapon> weaponslist = new ArrayList<>();
+    private static List<Weapon> weaponslist = new ArrayList<>();
 
     private Comparator<Weapon> absteigendamage = new Comparator<Weapon>() {
         @Override
@@ -24,29 +31,39 @@ public class Main {
         }
     };
 
-    private Printable printable = new Printable() {
+    private static Printable printable = new Printable() {
         @Override
         public void print(List<Weapon> weapons) {
-            for (int i = 0; i<weapons.size(); i++)
-            {
+            for (int i = 0; i < weapons.size(); i++) {
                 System.out.println(weapons.get(i));
             }
         }
     };
 
     public static void main(String[] args) {
-
+        String fileName = "weapons.csv";
+        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+            stream.forEach(a ->  addWeapon(a));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        printable.print(weaponslist);
     }
 
-    public List<Weapon> sortdamage(List<Weapon> weapons)
-    {
+    public List<Weapon> sortdamage(List<Weapon> weapons) {
         Collections.sort(weapons, absteigendamage);
         return weapons;
     }
 
-    public List<Weapon> sortalphabetisch(List<Weapon> weapons)
-    {
+    public List<Weapon> sortalphabetisch(List<Weapon> weapons) {
         Collections.sort(weapons, alphabetisch);
         return weapons;
+    }
+
+    public static void addWeapon(String a)
+    {
+        String[] splitted = a.split(";");
+        Weapon weapon = new Weapon(splitted[0], combatType.valueOf(splitted[1]), damageType.valueOf(splitted[2]), Integer.valueOf(splitted[3]), Integer.valueOf(splitted[4]), Integer.valueOf(splitted[5]), Integer.valueOf(splitted[6]));
+        weaponslist.add(weapon);
     }
 }
