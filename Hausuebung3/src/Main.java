@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
@@ -73,6 +74,10 @@ public class Main {
         boolean ergebnis3 = isShortWord.test(test2);
 
         System.out.println(ergebnis + ", " + ergebnis2 + ", " + ergebnis3);
+
+        //Beispiel 4
+        final int result = IntStream.of(1,2,3,4,5,6,7,8,9,10).filter(a -> a % 2 != 0).map(a -> a * a).sum();
+        System.out.println(result);
     }
 
     public static List<Weapon> sortdamage(List<Weapon> weapons) {
