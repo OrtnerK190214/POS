@@ -11,14 +11,14 @@ public class Main {
 
     private static List<Weapon> weaponslist = new ArrayList<>();
 
-    private Comparator<Weapon> absteigendamage = new Comparator<Weapon>() {
+    private static Comparator<Weapon> absteigendamage = new Comparator<Weapon>() {
         @Override
         public int compare(Weapon o1, Weapon o2) {
             return o1.getDamage() - o2.getDamage();
         }
     };
 
-    private Comparator<Weapon> alphabetisch = new Comparator<Weapon>() {
+    private static Comparator<Weapon> alphabetisch = new Comparator<Weapon>() {
         @Override
         public int compare(Weapon o1, Weapon o2) {
             int i1 = o1.getCombatType().compareTo(o2.getCombatType());
@@ -48,14 +48,20 @@ public class Main {
             e.printStackTrace();
         }
         printable.print(weaponslist);
+        System.out.println("--------------------------------");
+        sortdamage(weaponslist);
+        printable.print(weaponslist);
+        System.out.println("--------------------------------");
+        sortalphabetisch(weaponslist);
+        printable.print(weaponslist);
     }
 
-    public List<Weapon> sortdamage(List<Weapon> weapons) {
+    public static List<Weapon> sortdamage(List<Weapon> weapons) {
         Collections.sort(weapons, absteigendamage);
         return weapons;
     }
 
-    public List<Weapon> sortalphabetisch(List<Weapon> weapons) {
+    public static List<Weapon> sortalphabetisch(List<Weapon> weapons) {
         Collections.sort(weapons, alphabetisch);
         return weapons;
     }
