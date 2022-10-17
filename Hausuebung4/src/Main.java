@@ -6,11 +6,15 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Stream;
 
 public class Main {
     private static List<Integer> list = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
+
+    private static List<List> lists = new ArrayList<>();
 
     public static void main(String[] args) {
         String fileName = "numbers.csv";
@@ -20,15 +24,30 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println("chunks> ");
+        System.out.println("Chunks> ");
         int eingabe1 = scanner.nextInt();
-        System.out.println("divider> ");
+        System.out.println("Divider> ");
         int eingabe2 = scanner.nextInt();
 
-        for (int i = 0; i<list.size(); i++)
+        int sub = list.size()/eingabe1;
+        int tmp = 0;
+
+        for (int i = 0; i<eingabe1; i++)
         {
-            System.out.println(list.get(i));
+                lists.add(list.subList(tmp, sub));
+                tmp = sub;
+                sub = sub + list.size()/eingabe1;
         }
+
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+
+        for (int i = 0; i<lists.size(); i++)
+        {
+            List<Integer> a = lists.get(i);
+            Task task = new Task(a, eingabe2);
+            executor.execute(task);
+        }
+        executor.shutdown();
     }
 
     public static void addList(String a)
