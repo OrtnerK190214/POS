@@ -1,8 +1,8 @@
-import javax.sound.midi.Soundbank;
+package Beispiel1;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
