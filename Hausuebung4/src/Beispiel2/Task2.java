@@ -1,6 +1,9 @@
 package Beispiel2;
 
-public class Task2 implements Runnable{
+import java.util.List;
+import java.util.concurrent.Callable;
+
+public class Task2 implements Callable<Integer> {
 
     private int zahl;
     private int obergrenze;
@@ -13,15 +16,11 @@ public class Task2 implements Runnable{
     }
 
     @Override
-    public void run() {
-        for (int i = untergrenze; i<obergrenze; i++)
+    public Integer call() throws Exception {
+        for (int i = untergrenze; i<=obergrenze; i++)
         {
             zahl = zahl + i;
         }
-        System.out.println(zahl);
-    }
-
-    public int getZahl() {
         return zahl;
     }
 }

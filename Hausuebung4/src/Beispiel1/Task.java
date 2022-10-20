@@ -2,6 +2,7 @@ package Beispiel1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class Task implements Runnable {
 
