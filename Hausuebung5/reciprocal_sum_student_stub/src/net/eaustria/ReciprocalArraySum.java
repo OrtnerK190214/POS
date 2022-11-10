@@ -91,7 +91,8 @@ public final class ReciprocalArraySum {
         @Override
         protected void compute() {
             if (input.length < 3) {
-                value += seqArraySum(input);
+                //value += seqArraySum(input);
+                value = endIndexExclusive - startIndexInclusive;
             }
             else {
                 int mid = input.length / 2;
@@ -100,6 +101,9 @@ public final class ReciprocalArraySum {
                 ReciprocalArraySumTask right =
                         new ReciprocalArraySumTask(mid, input.length - 1, Arrays.copyOfRange(input, mid, input.length));
                 invokeAll(left, right);
+                left.join();
+                right.join();
+                value = left.getValue() + right.getValue();
             }
         }
     }
@@ -118,13 +122,13 @@ public final class ReciprocalArraySum {
 
         ReciprocalArraySumTask task
                 = new ReciprocalArraySumTask(0, input.length, input);
-        pool.execute(task);
+        pool.invoke(task);
         return task.getValue();
     }
 
 
     public static void main(String[] args) {
-        double[] zahlen = new double[4];
+        double[] zahlen = new double[8];
         for (int i = 0; i < zahlen.length; i++) {
             zahlen[i] = i;
         }

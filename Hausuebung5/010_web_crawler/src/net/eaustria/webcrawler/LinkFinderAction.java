@@ -51,27 +51,27 @@ public class LinkFinderAction extends RecursiveAction {
 
         if (cr.visited(url) == false)
         {
+            List recursiveActions = new ArrayList();
             try {
-                List recursiveActions = new ArrayList();
                 URL url1 = new URL(url);
                 Parser parser = new Parser(url1.openConnection());
                 NodeList list = parser.extractAllNodesThatMatch(new NodeClassFilter(LinkTag.class));
                 for (int i = 0; i < list.size(); i++)
                 {
                     LinkTag linktag = (LinkTag) list.elementAt(i);
-                    if (linktag.extractLink().isEmpty() == false && cr.visited(linktag.extractLink())) {
+                    if (!linktag.extractLink().isEmpty() && !cr.visited(linktag.extractLink())) {
                         recursiveActions.add(new LinkFinderAction(linktag.extractLink(), cr));
                     }
+                }
+                if (cr.size() == 500)
+                {
+                    System.out.println(System.currentTimeMillis() - System.currentTimeMillis());
                 }
                 cr.addVisited(url);
                 System.out.println(url);
                 invokeAll(recursiveActions);
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            } catch (ParserException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+
             }
         }
     }
