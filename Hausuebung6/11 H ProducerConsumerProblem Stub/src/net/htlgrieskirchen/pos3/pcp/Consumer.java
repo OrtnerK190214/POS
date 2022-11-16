@@ -15,13 +15,14 @@ public class Consumer implements Runnable {
     private final int sleepTime;
     
     private final List<Integer> received;
-    private boolean running;
+    private  boolean running;
     
     public Consumer(String name, Storage storage, int sleepTime) {
         this.name = name;
         this.storage = storage;
         this.sleepTime = sleepTime;
         this.received = new ArrayList<>();
+        this.running = true;
     }
 
     public List<Integer> getReceived() {
@@ -30,7 +31,17 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-
-    }
+        while (!storage.isProductionComplete() && running) {
+                Integer tmp = storage.get();
+                if (tmp != null) {
+                    received.add(tmp);
+                }
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
 }
 
