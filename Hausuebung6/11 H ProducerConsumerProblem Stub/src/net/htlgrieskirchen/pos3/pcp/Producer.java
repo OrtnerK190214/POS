@@ -30,31 +30,32 @@ public class Producer implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i<numberOfItems-1; i++)
+        int i = 0;
+        while (i<numberOfItems)
         {
-            try {
-                Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
             try {
                 if (storage.put(i) == true)
                 {
                     sent.add(i);
+                    i++;
                 }
                 else {
-                    Thread.sleep(sleepTime);
-                    sent.add(i);
+                    try {
+                        Thread.sleep(sleepTime);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
         try {
-            Thread.sleep(3000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         storage.setProductionComplete();
+        System.out.println("P");
     }
 }

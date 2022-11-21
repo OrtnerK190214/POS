@@ -22,7 +22,6 @@ public class Consumer implements Runnable {
         this.storage = storage;
         this.sleepTime = sleepTime;
         this.received = new ArrayList<>();
-        this.running = true;
     }
 
     public List<Integer> getReceived() {
@@ -31,7 +30,7 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        while (!storage.isProductionComplete() && running) {
+            while (!storage.isProductionComplete()) {
                 Integer tmp = storage.get();
                 if (tmp != null) {
                     received.add(tmp);
@@ -42,6 +41,7 @@ public class Consumer implements Runnable {
                     throw new RuntimeException(e);
                 }
             }
+            System.out.println("C");
         }
 }
 
